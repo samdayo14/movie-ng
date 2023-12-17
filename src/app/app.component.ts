@@ -1,14 +1,33 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { HomeComponent } from './pages/home/home.component';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
+  imports: [HomeComponent, RouterOutlet, NgFor, RouterLink, RouterOutlet,RouterLinkActive],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'movie-app';
+
+  protected routes = [
+    {
+      page:'Movies',
+      routerLink:''
+    },
+    {
+      page:'Tv Shows',
+      routerLink:'tv-shows'
+    },
+    {
+      page:'Genres',
+      routerLink:'genres'
+    }
+  ]
+
+  protected trackRoute(index: number, route: (typeof this.routes)[0]) {
+    return route.page;
+  }
 }
