@@ -14,6 +14,7 @@ backdrop_path:string;
 genre_ids:number[]
 original_language:string;
 original_title:string;
+id:number;
 overview:string;
 popularity:number;
 poster_path:string;
@@ -23,7 +24,6 @@ video:boolean;
 vote_average:number;
 vote_count:number
 }
-
    
  export interface Movie {
     adult: boolean;
@@ -34,6 +34,9 @@ vote_count:number
     original_title: string;
     overview: string;
     popularity: number;
+    revenue:number;
+    runtime:number;
+    status:string;
     poster_path: string;
     release_date: string;
     title: string;

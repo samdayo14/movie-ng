@@ -8,7 +8,7 @@ export const routes: Routes = [
     {path:'', component:HomeComponent},
     {path:'tv-shows', component:TvShowsComponent},
     {path:'genres', component:GenresComponent},
-    {path:'movie/id', component:MovieIdComponent},
+    {path:'movie/:id', component:MovieIdComponent},
     { path: '', redirectTo: '', pathMatch: 'full' },
     { path: '**', component: HomeComponent }
 ];

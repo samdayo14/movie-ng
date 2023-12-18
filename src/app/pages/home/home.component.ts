@@ -1,10 +1,10 @@
-import {  Component,} from '@angular/core';
+import {  Component, signal,} from '@angular/core';
 import { Movie, TopMovie, } from '../../models/movie';
 import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { MovieService } from '../../services/movie.service';
-import { BehaviorSubject, Observable, of, switchMap, } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { MovieCardComponent } from '../../component/movie-card/movie-card.component';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 
 
@@ -18,18 +18,19 @@ import { RouterLink } from '@angular/router';
 export class HomeComponent{ 
   protected item$: Observable<Movie[]> = this.service.getMovies();
   protected movie$: BehaviorSubject<TopMovie[]> = new BehaviorSubject<TopMovie[]>([]);
-  private currentPage = 1
+  private currentPage = signal(1)
 
-  constructor(private readonly service:MovieService){
+
+  constructor(private readonly service:MovieService,private route:ActivatedRoute){
     this.loadMore()
   }
  
   protected loadMore() {
-    this.service.getTopRatedMovies(this.currentPage).subscribe(
+    this.service.getTopRatedMovies(this.currentPage()).subscribe(
       (res) => {
         const currentMovies = this.movie$.value;
         this.movie$.next([...currentMovies, ...res]);
-        this.currentPage++;
+        this.currentPage.update((value) => value + 1);
       },
     );
   }
