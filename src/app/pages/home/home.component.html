@@ -7,7 +7,15 @@
   </div>
 </section>
 <!-- movie list -->
-<div class="flex flex-col gap-3 mx-7">
+<div class="lex gap-3">
+  <button *ngFor="let item of routes" 
+            class="text-red-700 bg-yellow-300 py-2 px-5" 
+            (click)="openTab(item.route)"
+            [class.selected]="selectedTab === item.route">
+            {{ item.route }}
+          </button>
+</div>
+<div class="flex flex-col gap-3 mx-7" *ngIf="top_rated && selectedTab === 'Top Rated'">
 <h1 class="text-[#FFD700] text-4xl font-bold">Top Rated Movies</h1>
 <div class="grid grid-cols-5 gap-3">
 <div *ngFor="let movie of movie$ | async">
@@ -15,5 +23,17 @@
 </div>
 </div>
 <button class="flex justify-start items-start self-end text-white hover:text-yellow-300 hover:underline hover:transition-all duration-600" (click)="loadMore()">See more &rarr;</button>
+</div>
+<div *ngIf="trending && selectedTab === 'Trending'" class="mx-7 flex flex-col gap-3 ">
+  <h1 class="text-[#FFD700] text-4xl font-bold">Trending Movies</h1>
+  <div class="grid grid-cols-5 gap-3">
+  <div *ngFor="let movie of Trendingmovies$ | async">
+    <app-movie-card [title]="movie.title" [image]="movie.poster_path" [rating]="movie.vote_average" [routerLink]="['/movie', + movie.id]"></app-movie-card>
+  </div>
+  </div>
+  <button class="flex justify-start items-start self-end text-white hover:text-yellow-300 hover:underline hover:transition-all duration-600">See more &rarr;</button>
+</div>
+<div *ngIf="upcoming && selectedTab === 'Upcoming'">
+  <p class="text-red-600 text-9xl">upcoming</p>
 </div>
 </div>
