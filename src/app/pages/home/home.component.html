@@ -7,33 +7,23 @@
   </div>
 </section>
 <!-- movie list -->
-<div class="lex gap-3">
+<div class="flex gap-3 bg-[#212121] py-1 px-7 rounded-[5px] self-center">
   <button *ngFor="let item of routes" 
-            class="text-red-700 bg-yellow-300 py-2 px-5" 
+            class="text-white py-2 px-5 rounded-[5px]" 
             (click)="openTab(item.route)"
-            [class.selected]="selectedTab === item.route">
+            [ngClass]="{ 'underline text-yellow-300': selectedTab === item.route }">
             {{ item.route }}
           </button>
 </div>
-<div class="flex flex-col gap-3 mx-7" *ngIf="top_rated && selectedTab === 'Top Rated'">
-<h1 class="text-[#FFD700] text-4xl font-bold">Top Rated Movies</h1>
-<div class="grid grid-cols-5 gap-3">
-<div *ngFor="let movie of movie$ | async">
-  <app-movie-card [title]="movie.title" [image]="movie.poster_path" [rating]="movie.vote_average" [routerLink]="['/movie', + movie.id]"></app-movie-card>
-</div>
-</div>
-<button class="flex justify-start items-start self-end text-white hover:text-yellow-300 hover:underline hover:transition-all duration-600" (click)="loadMore()">See more &rarr;</button>
-</div>
-<div *ngIf="trending && selectedTab === 'Trending'" class="mx-7 flex flex-col gap-3 ">
-  <h1 class="text-[#FFD700] text-4xl font-bold">Trending Movies</h1>
+<!-- Common Functionality for Each Section -->
+<div *ngIf="(top_rated || trending || upcoming) && (selectedTab === 'Top Rated' || selectedTab === 'Trending' || selectedTab === 'Upcoming')" class="mx-7 flex flex-col gap-3">
+  <h1 class="text-[#FFD700] text-4xl font-bold">{{selectedTab === 'Top Rated' ? 'Top Rated Movies' : selectedTab === 'Trending' ? 'Trending Movies' : 'Upcoming Movies'}}</h1>
   <div class="grid grid-cols-5 gap-3">
-  <div *ngFor="let movie of Trendingmovies$ | async">
-    <app-movie-card [title]="movie.title" [image]="movie.poster_path" [rating]="movie.vote_average" [routerLink]="['/movie', + movie.id]"></app-movie-card>
+    <div *ngFor="let movie of (selectedTab === 'Top Rated' ? movie$ : selectedTab === 'Trending' ? trendingMovies$ : upcomingMovies$) | async">
+      <app-movie-card [title]="movie.title" [image]="movie.poster_path" [rating]="movie.vote_average" [routerLink]="['/movie', + movie.id]"></app-movie-card>
+    </div>
   </div>
-  </div>
-  <button class="flex justify-start items-start self-end text-white hover:text-yellow-300 hover:underline hover:transition-all duration-600">See more &rarr;</button>
+  <button class="flex justify-start items-start self-end text-white hover:text-yellow-300 hover:underline hover:transition-all duration-600" (click)="loadMore()">See more &rarr;</button>
 </div>
-<div *ngIf="upcoming && selectedTab === 'Upcoming'">
-  <p class="text-red-600 text-9xl">upcoming</p>
-</div>
+
 </div>

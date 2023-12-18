@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Movie, TopMovie, TrendingMovies} from '../models/movie';
+import { Movie, TopMovie, TrendingMovies, UpcomingMovies} from '../models/movie';
 import { HttpClient } from '@angular/common/http';
 import { Observable, concat, map, of, startWith, switchMap, tap } from 'rxjs';
 import { response } from 'express';
@@ -34,6 +34,10 @@ return this.http.get<{results:TopMovie[]}>(`${this.baseUrl}/movie/top_rated?api_
     return this.http.get<{ results: TrendingMovies[] }>(
       `${this.baseUrl}/trending/movie/${timeWindow}?api_key=${this.apiKey}`
     ).pipe(map((res) => res.results.slice(0, 10)));
+  }
+
+  getUpcomingMovies():Observable<UpcomingMovies[]>{
+    return this.http.get<{results: UpcomingMovies[]}>(`${this.baseUrl}/movie/upcoming?api_key=${this.apiKey}`).pipe(map((res) => res.results.slice(0,10)))
   }
 
 }
