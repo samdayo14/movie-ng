@@ -79,3 +79,10 @@ video:boolean,
 vote_average:number,
 vote_count:number
   }
+
+  export interface MovieCredit {
+    cast: {
+      name: string;
+      profile_path: string;
+    }[];  
+  }

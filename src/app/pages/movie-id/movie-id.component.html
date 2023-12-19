@@ -1,16 +1,29 @@
+<section class="flex flex-col gap-5">
 <div *ngIf="movieId$ | async as movie" class="flex flex-col gap-10">
-    <img [src]="'https://image.tmdb.org/t/p/original/' + movie.backdrop_path" alt="" class="w-full">
-    <p class="ml-7 text-6xl absolute top-[50%] text-[#FFD700] font-semibold z-50">{{ movie.title }} - {{movie.vote_average}} / 10</p>
-    <div class="flex gap-5">
-        <img class="w-[236px] min-h-[300px] ml-7 rounded-[5px]" [src]="'https://image.tmdb.org/t/p/original/' +  movie.poster_path" [alt]="movie.title">
+    <div class="w-full">
+        <img [src]="'https://image.tmdb.org/t/p/original/' + movie.backdrop_path" class="w-ful">
+    </div>
+    <p *ngIf="movie.backdrop_path" class="ml-7 text-6xl absolute top-[50%] text-[#FFD700] font-semibold z-50">{{ movie.title }} - {{movie.vote_average}} / 10</p>
+    <div class="flex gap-5 mx-7">
+        <img class="w-[236px] h-[300px] rounded-[5px]" [src]="'https://image.tmdb.org/t/p/original/' +  movie.poster_path" [alt]="movie.title">
         <div class="flex flex-col gap-2 self-center">
-            <span class="text-[#FFD700] text-lg">popularity: {{movie.popularity}}</span>
-            <span class="text-[#FFD700] text-lg">Release Date: {{movie.release_date  | date: "dd.MM.yyyy" }}</span>
-            <span class="text-[#FFD700] text-lg">Overview: {{movie.overview}}</span>
-            <span class="text-[#FFD700] text-lg">Language: {{ movie.original_language | uppercase }}</span>
-            <span class="text-[#FFD700] text-lg"> Revenue: {{ movie.revenue | currency }}</span>
-            <span class="text-[#FFD700] text-lg">Duration: {{ movie.runtime }} min</span>
-            <span class="text-[#FFD700] text-lg">Status: {{ movie.status }}</span>
-                </div>
+            <span class="text-[#FFD700] text-lg flex gap-3">
+               <strong class="capitalize">popularity:</strong>{{movie.popularity}}</span>
+            <span class="text-[#FFD700] text-lg flex gap-3"><strong class="capitalize">Release Date: </strong> {{movie.release_date  | date: "dd.MM.yyyy" }}</span>
+            <span class="text-[#FFD700] text-lg flex gap-3"><strong class="capitalize">Overview:</strong> {{movie.overview}}</span>
+            <span class="text-[#FFD700] text-lg flex gap-3"><strong class="capitalize">Language:</strong> {{ movie.original_language | uppercase }}</span>
+            <span class="text-[#FFD700] text-lg flex gap-3"><strong class="capitalize">Revenue:</strong> {{ movie.revenue | currency }}</span>
+            <span class="text-[#FFD700] text-lg flex gap-3"><strong class="capitalize">Duration:</strong> {{ movie.runtime }} min</span>
+            <span class="text-[#FFD700] text-lg flex gap-3"><strong class="capitalize">Status:</strong> {{ movie.status }}</span>
+               
+        </div>
     </div>
 </div>
+<div *ngIf="movieCredits$ | async as credits" class="flex gap-5 overflow-x-scroll no-scrollbar mx-7">
+    <div *ngFor="let credit of credits.cast">
+      <img class="w-[342px] h-[400px]" [src]="'https://image.tmdb.org/t/p/original/' + credit.profile_path">
+      <p class="text-yellow-300 text-lg">{{ credit.name }}</p>
+    </div>
+  </div>
+  
+</section>
