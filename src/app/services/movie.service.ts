@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Movie, MovieCredit, MoviePage, TopMovie, TrendingMovies, UpcomingMovies} from '../models/movie';
 import { HttpClient } from '@angular/common/http';
-import { Observable, concat, map, of, startWith, switchMap, tap } from 'rxjs';
-import { response } from 'express';
+import { Observable, map} from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'

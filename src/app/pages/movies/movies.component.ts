@@ -1,15 +1,16 @@
 import { AsyncPipe, NgFor, NgIf } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Observable, tap } from 'rxjs';
-import { Movie, MoviePage } from '../../models/movie';
+import { Observable } from 'rxjs';
+import { MoviePage } from '../../models/movie';
 import { MovieService } from '../../services/movie.service';
 import { MovieCardComponent } from '../../component/movie-card/movie-card.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-movies',
   standalone: true,
-  imports: [ReactiveFormsModule,NgFor,MovieCardComponent,AsyncPipe,NgIf],
+  imports: [ReactiveFormsModule,NgFor,MovieCardComponent,AsyncPipe,NgIf,RouterLink],
   templateUrl: './movies.component.html',
   styleUrl: './movies.component.scss'
 })
