@@ -5,6 +5,10 @@
     results: Movie[];
     total_pages: number;
     total_results: number;
+    title:string;
+    backdrop_path: string; 
+    vote_average: number;
+    vote_count: number;
   }
   
 

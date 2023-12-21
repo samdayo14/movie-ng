@@ -14,8 +14,12 @@ export class AppComponent {
 
   protected routes = [
     {
-      page:'Movies',
+      page:'Home',
       routerLink:''
+    },
+    {
+      page:'Movies',
+      routerLink:'movies'
     },
     {
       page:'Tv Shows',

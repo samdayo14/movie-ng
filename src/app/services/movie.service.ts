@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Movie, MovieCredit, TopMovie, TrendingMovies, UpcomingMovies} from '../models/movie';
+import { Movie, MovieCredit, MoviePage, TopMovie, TrendingMovies, UpcomingMovies} from '../models/movie';
 import { HttpClient } from '@angular/common/http';
 import { Observable, concat, map, of, startWith, switchMap, tap } from 'rxjs';
 import { response } from 'express';
@@ -13,36 +13,48 @@ export class MovieService {
   constructor(private http: HttpClient) { 
   }
 
-  getMovies(): Observable<Movie[]> {
+ public getMovies(): Observable<Movie[]> {
     return this.http.get<{ results: Movie[] }>(`${this.baseUrl}/discover/movie?api_key=${this.apiKey}`)
       .pipe(
         map(response => response.results)
       );
   }
 
-  getTopRatedMovies(page: number = 1): Observable<TopMovie[]> {
+ public getTopRatedMovies(page: number = 1): Observable<TopMovie[]> {
 return this.http.get<{results:TopMovie[]}>(`${this.baseUrl}/movie/top_rated?api_key=${this.apiKey}&page=${page}`).pipe(map((res) => res.results.slice(0,10)))
   }
 
-  getMovieId(id: string) {
+ public getMovieId(id: string) {
     return this.http.get<Movie>(
       `${this.baseUrl}/movie/${id}?api_key=${this.apiKey}`
     );
   }
 
-  getTrendingMovies(timeWindow: string='day'): Observable<TrendingMovies[]> {
+ public getTrendingMovies(timeWindow: string='day'): Observable<TrendingMovies[]> {
     return this.http.get<{ results: TrendingMovies[] }>(
       `${this.baseUrl}/trending/movie/${timeWindow}?api_key=${this.apiKey}`
     ).pipe(map((res) => res.results.slice(0, 10)));
   }
 
-  getUpcomingMovies():Observable<UpcomingMovies[]>{
+public  getUpcomingMovies():Observable<UpcomingMovies[]>{
     return this.http.get<{results: UpcomingMovies[]}>(`${this.baseUrl}/movie/upcoming?api_key=${this.apiKey}`).pipe(map((res) => res.results.slice(0,10)))
   }
 
-getMovieCredits(id:string):Observable<MovieCredit> {
+public getMovieCredits(id:string):Observable<MovieCredit> {
   return this.http.get<MovieCredit>(`${this.baseUrl}/movie/${id}/credits?api_key=${this.apiKey}`)
 }
+
+public getSearchMovies(query: string): Observable<MoviePage[]> {
+   const uri = query ? '/search/movie' : '/movie/popular';
+  return this.http.get<{ results: MoviePage[] }>(`${this.baseUrl}${uri}?api_key=${this.apiKey}&query=${query}`)
+    .pipe(
+      map((res) => {
+        return res.results;
+      })
+    );
+}
+
+
 
 }
   
