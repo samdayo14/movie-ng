@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Movie, MovieCredit, MoviePage, TopMovie, TrendingMovies, UpcomingMovies} from '../models/movie';
+import { Movie, MovieCredit, MoviePage, SearchTv, TopMovie, TrendingMovies, UpcomingMovies} from '../models/movie';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map} from 'rxjs';
 
@@ -30,6 +30,12 @@ return this.http.get<{results:TopMovie[]}>(`${this.baseUrl}/movie/top_rated?api_
     );
   }
 
+  public getTvId(id: string) {
+    return this.http.get<SearchTv>(
+      `${this.baseUrl}/tv/${id}?api_key=${this.apiKey}`
+    );
+  }
+
  public getTrendingMovies(timeWindow: string='day'): Observable<TrendingMovies[]> {
     return this.http.get<{ results: TrendingMovies[] }>(
       `${this.baseUrl}/trending/movie/${timeWindow}?api_key=${this.apiKey}`
@@ -54,6 +60,10 @@ public getSearchMovies(query: string): Observable<MoviePage[]> {
     );
 }
 
+public getSearchTv(query:String):Observable<SearchTv[]> {
+  const uri = query ? '/search/tv' : '/tv/popular';
+  return this.http.get<{results:SearchTv[]}>(`${this.baseUrl}${uri}?api_key=${this.apiKey}&query=${query}`).pipe(map((res) => res.results))
+}
 
 
 }
