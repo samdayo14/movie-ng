@@ -2,7 +2,7 @@ import { AsyncPipe, NgIf,NgFor, CurrencyPipe, DatePipe, UpperCasePipe } from '@a
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
 import { Observable } from 'rxjs';
-import { SearchTv } from '../../models/movie';
+import { MovieCredit, SearchTv } from '../../models/movie';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -14,12 +14,14 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class TvIdComponent implements OnInit{
   protected id:string = ''
+  protected tvCredits:Observable<MovieCredit> = this.service.getTvCredits(`${this.id}`)
   protected TvId$:Observable<SearchTv>= this.service.getTvId(`${this.id}`)
   constructor(private service:MovieService, private route:ActivatedRoute){}
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.TvId$ = this.service.getTvId(params['id']);
+      this.tvCredits = this.service.getTvCredits(params['id'])
     });
   }
 }

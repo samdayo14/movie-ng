@@ -65,6 +65,9 @@ public getSearchTv(query:String):Observable<SearchTv[]> {
   return this.http.get<{results:SearchTv[]}>(`${this.baseUrl}${uri}?api_key=${this.apiKey}&query=${query}`).pipe(map((res) => res.results))
 }
 
+public getTvCredits(id:string):Observable<MovieCredit> {
+  return this.http.get<MovieCredit>(`${this.baseUrl}/tv/${id}/credits?api_key=${this.apiKey}`)
+}
 
 }
   

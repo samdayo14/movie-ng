@@ -21,8 +21,10 @@
 </div>
 <div *ngIf="movieCredits$ | async as credits" class="flex gap-5 overflow-x-scroll no-scrollbar mx-7">
     <div *ngFor="let credit of credits.cast">
-      <img class="w-[342px] h-[400px]" [src]="'https://image.tmdb.org/t/p/original/' + credit.profile_path">
-      <p class="text-yellow-300 text-lg">{{ credit.name }}</p>
+        <div class="!w-[72px]">
+            <img class="" [src]="'https://image.tmdb.org/t/p/original/' + credit.profile_path">
+            <p class="text-yellow-300 text-lg">{{ credit.name }}</p>
+        </div>
     </div>
   </div>
   
