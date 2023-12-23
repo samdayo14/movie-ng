@@ -15,9 +15,20 @@
                 <span class="text-[#FFD700] text-lg flex gap-3"><strong class="capitalize">Revenue:</strong> {{ tv.revenue | currency }}</span>
                 <span class="text-[#FFD700] text-lg flex gap-3"><strong class="capitalize">Duration:</strong> {{ tv.runtime }} min</span>
                 <span class="text-[#FFD700] text-lg flex gap-3"><strong class="capitalize">Status:</strong> {{ tv.status }}</span>
-               <div class="flex gap-3">
-                <strong class="capitalize text-[#FFD700] text-lg whitespace-nowrap">Air Date:</strong>
+                <span class="text-[#FFD700] text-lg flex gap-3"><strong class="capitalize">Tagline:</strong> {{ tv.tagline }}</span>
                 <div class="flex gap-3">
+                    <strong class="capitalize text-[#FFD700] text-lg whitespace-nowrap">seasons:</strong>
+                    <div class="flex flex-wrap gap-3">
+                    <div *ngFor="let season of tv.seasons">
+                        <span class="text-[#FFD700] text-lg"> {{
+                            season.name
+                          }}</span>
+                        </div>
+                        </div>
+                    </div>
+                <div class="flex gap-3">
+                <strong class="capitalize text-[#FFD700] text-lg whitespace-nowrap">Air Date:</strong>
+                <div class="flex flex-wrap gap-3">
                 <div *ngFor="let season of tv.seasons">
                     <span class="text-[#FFD700] text-lg"> {{
                         season.air_date | date: "MM.yyyy"

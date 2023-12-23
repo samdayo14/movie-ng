@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Movie, MovieCredit, MoviePage, SearchTv, TopMovie, TrendingMovies, UpcomingMovies} from '../models/movie';
+import { GenresDto, Genre, Movie, MovieCredit, MoviePage, SearchTv, TopMovie, TrendingMovies, UpcomingMovies} from '../models/movie';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map} from 'rxjs';
 
@@ -67,6 +67,26 @@ public getSearchTv(query:String):Observable<SearchTv[]> {
 
 public getTvCredits(id:string):Observable<MovieCredit> {
   return this.http.get<MovieCredit>(`${this.baseUrl}/tv/${id}/credits?api_key=${this.apiKey}`)
+}
+
+
+public getMovieGenres(): Observable<Genre[]> {
+  return this.http.get<{ genres: Genre[] }>(`${this.baseUrl}/genre/movie/list?api_key=${this.apiKey}`)
+    .pipe(
+      map((res) =>
+         res.genres
+      )
+    );
+}
+
+
+public getTvGenres(): Observable<Genre[]> {
+  return this.http.get<{ genres: Genre[] }>(`${this.baseUrl}/genre/tv/list?api_key=${this.apiKey}`)
+    .pipe(
+      map((res) =>
+         res.genres
+      )
+    );
 }
 
 }

@@ -94,7 +94,7 @@ vote_count:number
 
 
   export interface SearchTv {
-    genres: genre[];
+    genres: Genre[];
     adult: boolean;
     backdrop_path: string;
     genre: string;
@@ -118,10 +118,15 @@ vote_count:number
     seasons: season[];
   }
 
-  export interface genre {
-    id: number;
-    name: string;
+  export interface GenresDto {
+    genres: Genre[];
   }
+  
+  export interface Genre {
+    name: string;
+    id: number;
+  }
+ 
   
   export interface season {
     air_date: number;

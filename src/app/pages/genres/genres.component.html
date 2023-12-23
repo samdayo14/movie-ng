@@ -1,1 +1,21 @@
-<p>genres works!</p>
+<div class="mx-7 flex flex-col gap-10">
+    <!-- Movies Genres -->
+<section class="flex flex-col gap-4">
+    <h2 class="text-yellow-300 font-medium text-2xl">Movie Genres</h2>
+    <div class="flex flex-wrap gap-4">
+        <div *ngFor="let genre of movieGenres$ | async">
+        <button class="text-black bg-yellow-300 py-3 px-5 rounded-md">{{ genre.name }}</button>
+    </div>
+    </div>
+</section>
+
+<!-- Tv genres -->
+<section class="flex flex-col gap-4">
+    <h2 class="text-yellow-300 font-medium text-2xl">Tv Genres</h2>
+    <div class="flex flex-wrap gap-4">
+        <div *ngFor="let genre of TvGenres$ | async">
+        <button class="text-black bg-yellow-300 py-3 px-5 rounded-md">{{ genre.name }}</button>
+    </div>
+    </div>
+</section>
+</div>
