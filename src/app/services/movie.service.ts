@@ -36,14 +36,14 @@ return this.http.get<{results:TopMovie[]}>(`${this.baseUrl}/movie/top_rated?api_
     );
   }
 
- public getTrendingMovies(timeWindow: string='day'): Observable<TrendingMovies[]> {
+ public getTrendingMovies(timeWindow: string='day', page:number): Observable<TrendingMovies[]> {
     return this.http.get<{ results: TrendingMovies[] }>(
-      `${this.baseUrl}/trending/movie/${timeWindow}?api_key=${this.apiKey}`
+      `${this.baseUrl}/trending/movie/${timeWindow}?api_key=${this.apiKey}&page=${page}`
     ).pipe(map((res) => res.results.slice(0, 10)));
   }
 
-public  getUpcomingMovies():Observable<UpcomingMovies[]>{
-    return this.http.get<{results: UpcomingMovies[]}>(`${this.baseUrl}/movie/upcoming?api_key=${this.apiKey}`).pipe(map((res) => res.results.slice(0,10)))
+public  getUpcomingMovies(page:number):Observable<UpcomingMovies[]>{
+    return this.http.get<{results: UpcomingMovies[]}>(`${this.baseUrl}/movie/upcoming?api_key=${this.apiKey}&page=${page}`).pipe(map((res) => res.results.slice(0,10)))
   }
 
 public getMovieCredits(id:string):Observable<MovieCredit> {

@@ -3,11 +3,12 @@ import { Component } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
 import { Observable } from 'rxjs';
 import { Genre } from '../../models/movie';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-genres',
   standalone: true,
-  imports: [NgFor,AsyncPipe,NgIf],
+  imports: [NgFor,AsyncPipe,NgIf, RouterLink],
   templateUrl: './genres.component.html',
   styleUrl: './genres.component.scss'
 })

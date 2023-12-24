@@ -23,7 +23,7 @@
       <app-movie-card [title]="movie.title" [image]="movie.poster_path" [rating]="movie.vote_average" [routerLink]="['/movie', + movie.id]"></app-movie-card>
     </div>
   </div>
-  <button class="flex justify-start items-start self-end text-white hover:text-yellow-300 hover:underline hover:transition-all duration-600" (click)="loadMore()">See more &rarr;</button>
+  <button class="flex justify-start items-start self-end text-white hover:text-yellow-300 hover:underline hover:transition-all duration-600" (click)="handleLoadMore()">See more &rarr;</button>
 </div>
 
 </div>
