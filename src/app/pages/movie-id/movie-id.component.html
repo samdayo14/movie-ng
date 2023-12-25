@@ -15,10 +15,21 @@
             <span class="text-[#FFD700] text-lg flex gap-3"><strong class="capitalize">Revenue:</strong> {{ movie.revenue | currency }}</span>
             <span class="text-[#FFD700] text-lg flex gap-3"><strong class="capitalize">Duration:</strong> {{ movie.runtime }} min</span>
             <span class="text-[#FFD700] text-lg flex gap-3"><strong class="capitalize">Status:</strong> {{ movie.status }}</span>
-               
-        </div>
+    <div class="flex gap-3">
+                    <strong class="capitalize text-[#FFD700] text-lg whitespace-nowrap">Genres:</strong>
+                    <div class="flex flex-wrap gap-3">
+                    <div *ngFor="let genre of movie.genres">
+                        <span class="text-[#FFD700] text-lg"> {{
+                            genre.name
+                          }}</span>
+                        </div>
+                        </div>
+                    </div>
+            </div>  
     </div>
 </div>
+<div class="flex flex-col gap-10">
+
 <div *ngIf="movieCredits$ | async as credits" class="flex gap-5 overflow-x-scroll no-scrollbar mx-7">
     <div *ngFor="let credit of credits.cast">
         <div class="!w-[72px]">
@@ -27,5 +38,10 @@
         </div>
     </div>
   </div>
-  
+  <div class="grid grid-cols-2 mx-7 gap-3">
+  <div *ngFor="let video of movieVideo$ | async">
+      <app-video [key]="video.key" [site]="video.site"></app-video>
+    </div>
+  </div>
+  </div>
 </section>

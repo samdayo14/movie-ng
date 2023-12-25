@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { GenresDto, Genre, Movie, MovieCredit, MoviePage, SearchTv, TopMovie, TrendingMovies, UpcomingMovies} from '../models/movie';
+import { GenresDto, Genre, Movie, MovieCredit, MoviePage, SearchTv, TopMovie, TrendingMovies, UpcomingMovies, MovieVideo} from '../models/movie';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map} from 'rxjs';
+import { Observable, map, of, switchMap} from 'rxjs';
 
 
 @Injectable({
@@ -87,6 +87,10 @@ public getTvGenres(): Observable<Genre[]> {
          res.genres
       )
     );
+}
+
+public getMovieVideo(id:string):Observable<MovieVideo[]> {
+  return this.http.get<{results:MovieVideo[]}>(`${this.baseUrl}/movie/${id}/videos?api_key=${this.apiKey}`).pipe(map((res) => res.results.slice(0,5)))
 }
 
 }

@@ -46,6 +46,16 @@
                     </div>
                     </div>
                    </div>
+                   <div class="flex gap-3">
+                    <strong class="capitalize text-[#FFD700] text-lg whitespace-nowrap">Genres:</strong>
+                    <div class="flex flex-wrap gap-3">
+                    <div *ngFor="let genre of tv.genres">
+                        <span class="text-[#FFD700] text-lg"> {{
+                            tv.name
+                          }}</span>
+                        </div>
+                        </div>
+                    </div>
                </div>        
             </div>
         </div>

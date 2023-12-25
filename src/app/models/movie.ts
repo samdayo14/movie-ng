@@ -48,6 +48,7 @@ vote_count:number
     video: boolean;
     vote_average: number;
     vote_count: number;
+    genres: Genre[];
   }
   
   export interface TrendingMovies {
@@ -138,3 +139,8 @@ vote_count:number
     name: string;
   }
   
+  export interface MovieVideo {
+    id:number;
+    site: string;
+    key: string;
+  }

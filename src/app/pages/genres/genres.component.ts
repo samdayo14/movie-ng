@@ -2,7 +2,7 @@ import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
 import { Observable } from 'rxjs';
-import { Genre } from '../../models/movie';
+import { Genre, MovieVideo } from '../../models/movie';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -13,8 +13,9 @@ import { RouterLink } from '@angular/router';
   styleUrl: './genres.component.scss'
 })
 export class GenresComponent {
+  protected id:string= ''
   protected movieGenres$:Observable<Genre[]> = this.service.getMovieGenres();
-  protected TvGenres$:Observable<Genre[]> = this.service.getTvGenres()
+  protected TvGenres$:Observable<Genre[]> = this.service.getTvGenres();
 
   constructor(private service:MovieService){}
 }
