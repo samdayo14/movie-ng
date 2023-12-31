@@ -93,6 +93,10 @@ public getMovieVideo(id:string):Observable<MovieVideo[]> {
   return this.http.get<{results:MovieVideo[]}>(`${this.baseUrl}/movie/${id}/videos?api_key=${this.apiKey}`).pipe(map((res) => res.results.slice(0,5)))
 }
 
+public getTvVideo(id:string):Observable<MovieVideo[]> {
+  return this.http.get<{results:MovieVideo[]}>(`${this.baseUrl}/tv/${id}/videos?api_key=${this.apiKey}`).pipe(map((res) => res.results.slice(0,5)))
+}
+
 }
   
 

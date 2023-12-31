@@ -59,6 +59,7 @@
                </div>        
             </div>
         </div>
+        <h1 class="text-yellow-300 text-4xl font-bold ml-7">Top Cast</h1>
         <div *ngIf="tvCredits | async as credits" class="flex gap-5 overflow-x-scroll no-scrollbar mx-7">
             <div *ngFor="let credit of credits.cast">
                 <div class="!w-[72px]">
@@ -67,4 +68,9 @@
                 </div>
             </div>
           </div>
+          <div class="grid grid-cols-2 mx-7 gap-3">
+            <div *ngFor="let video of tvVideos$ | async">
+                <app-video [key]="video.key" [site]="video.site"></app-video>
+              </div>
+            </div>
     </section>

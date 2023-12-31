@@ -29,7 +29,7 @@
     </div>
 </div>
 <div class="flex flex-col gap-10">
-
+<h1 class="text-yellow-300 text-4xl font-bold ml-7">Top Cast</h1>
 <div *ngIf="movieCredits$ | async as credits" class="flex gap-5 overflow-x-scroll no-scrollbar mx-7">
     <div *ngFor="let credit of credits.cast">
         <div class="!w-[72px]">

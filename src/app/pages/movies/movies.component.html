@@ -16,7 +16,7 @@
       <div *ngIf="searchMovies$ | async as movies">
         <div *ngIf="movies.length > 0; else noMoviesFound">
           <div class="grid grid-cols-5 gap-3">
-          <div *ngFor="let movie of movies ">
+          <div *ngFor="let movie of movies">
               <app-movie-card [title]="movie.title" [image]="movie.backdrop_path" [rating]="movie.vote_average" [routerLink]="['/movie', +movie.id]"></app-movie-card>
             </div>
           </div>
