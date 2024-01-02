@@ -1,14 +1,14 @@
-import { AsyncPipe, NgFor, NgIf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
 import { Observable } from 'rxjs';
-import { Genre, MovieVideo } from '../../models/movie';
+import { Genre } from '../../models/movie';
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-genres',
   standalone: true,
-  imports: [NgFor,AsyncPipe,NgIf, RouterLink],
+  imports: [AsyncPipe,RouterLink],
   templateUrl: './genres.component.html',
   styleUrl: './genres.component.scss'
 })

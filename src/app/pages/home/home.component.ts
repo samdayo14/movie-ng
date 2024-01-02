@@ -16,7 +16,6 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent{ 
-  protected page:number = 1
   protected timeWindow:String= 'day';
   protected item$: Observable<Movie[]> = this.service.getMovies();
   protected movie$: BehaviorSubject<TopMovie[]> = new BehaviorSubject<TopMovie[]>([]);

@@ -27,7 +27,7 @@ export class AppComponent {
     },
     {
       page:'Genres',
-      routerLink:'genres'
+      routerLink:'genres/:id'
     }
   ]
 

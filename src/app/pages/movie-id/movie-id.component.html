@@ -1,9 +1,12 @@
 <section class="flex flex-col gap-5">
-<div *ngIf="movieId$ | async as movie" class="flex flex-col gap-10">
+@if (movieId$ | async; as movie) {
+<div  class="flex flex-col gap-10">
     <div class="w-full">
-        <img [src]="'https://image.tmdb.org/t/p/original/' + movie.backdrop_path" class="w-ful">
+        <img [src]="'https://image.tmdb.org/t/p/original/' + movie.backdrop_path" class="w-full">
     </div>
-    <p *ngIf="movie.backdrop_path" class="ml-7 text-6xl absolute top-[50%] text-[#FFD700] font-semibold z-50">{{ movie.title }} - {{movie.vote_average}} / 10</p>
+    @if (movie.backdrop_path) {
+        <p  class="ml-7 text-6xl absolute top-[50%] text-[#FFD700] font-semibold z-50">{{ movie.title }} - {{movie.vote_average}} / 10</p>
+    }
     <div class="flex gap-5 mx-7">
         <img class="w-[236px] h-[300px] rounded-[5px]" [src]="'https://image.tmdb.org/t/p/original/' +  movie.poster_path" [alt]="movie.title">
         <div class="flex flex-col gap-2 self-center">
@@ -18,30 +21,35 @@
     <div class="flex gap-3">
                     <strong class="capitalize text-[#FFD700] text-lg whitespace-nowrap">Genres:</strong>
                     <div class="flex flex-wrap gap-3">
-                    <div *ngFor="let genre of movie.genres">
+                        @for (genre of movie.genres; track $index) {
                         <span class="text-[#FFD700] text-lg"> {{
                             genre.name
-                          }}</span>
-                        </div>
+                          }}</span>      
+                    }
                         </div>
                     </div>
             </div>  
     </div>
 </div>
+}
 <div class="flex flex-col gap-10">
 <h1 class="text-yellow-300 text-4xl font-bold ml-7">Top Cast</h1>
-<div *ngIf="movieCredits$ | async as credits" class="flex gap-5 overflow-x-scroll no-scrollbar mx-7">
-    <div *ngFor="let credit of credits.cast">
-        <div class="!w-[72px]">
-            <img class="" [src]="'https://image.tmdb.org/t/p/original/' + credit.profile_path">
-            <p class="text-yellow-300 text-lg">{{ credit.name }}</p>
-        </div>
+@if (movieCredits$ | async; as credits) {
+    <div class="flex gap-5 overflow-x-scroll no-scrollbar mx-7">
+        @for (credit of credits.cast; track credit.name) {
+                <div class="!w-[72px]">
+                    <img class="" [src]="'https://image.tmdb.org/t/p/original/' + credit.profile_path">
+                    <p class="text-yellow-300 text-lg">{{ credit.name }}</p>
+                </div>
+        }
+
     </div>
-  </div>
+}
+
   <div class="grid grid-cols-2 mx-7 gap-3">
-  <div *ngFor="let video of movieVideo$ | async">
-      <app-video [key]="video.key" [site]="video.site"></app-video>
-    </div>
+    @for (video of movieVideo$ | async; track video.key) {
+        <app-video [key]="video.key" [site]="video.site"></app-video>
+    }
   </div>
   </div>
 </section>

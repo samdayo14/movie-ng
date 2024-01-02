@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
 import { Movie, MovieCredit, MovieVideo } from '../../models/movie';
 import { Observable } from 'rxjs';
-import { AsyncPipe, CurrencyPipe, DatePipe, JsonPipe, KeyValuePipe, NgFor, NgIf, UpperCasePipe } from '@angular/common';
+import { AsyncPipe, CurrencyPipe, DatePipe,UpperCasePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { VideoComponent } from '../../component/video/video.component';
 @Component({
   selector: 'app-movie-id',
   standalone: true,
-  imports: [NgIf,AsyncPipe,NgFor,DatePipe,UpperCasePipe,CurrencyPipe,VideoComponent,NgFor,KeyValuePipe,JsonPipe],
+  imports: [AsyncPipe,DatePipe,UpperCasePipe,CurrencyPipe,VideoComponent],
   templateUrl: './movie-id.component.html',
   styleUrl: './movie-id.component.scss'
 })

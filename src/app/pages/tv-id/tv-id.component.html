@@ -1,9 +1,12 @@
 <section class="flex flex-col gap-5 mb-5 overflow-x-hidden">
-    <div *ngIf="TvId$ | async as tv" class="flex flex-col gap-10">
+    @if (TvId$ | async; as tv) {
+    <div class="flex flex-col gap-10">
         <div class="w-full">
             <img [src]="'https://image.tmdb.org/t/p/original/' + tv.backdrop_path" class="w-ful">
         </div>
-        <p *ngIf="tv.backdrop_path" class="ml-7 text-6xl absolute top-[50%] text-[#FFD700] font-semibold z-50">{{ tv.name }} - {{tv.vote_average}} / 10</p>
+        @if (tv.backdrop_path) {
+            <p class="ml-7 text-6xl absolute top-[50%] text-[#FFD700] font-semibold z-50">{{ tv.name }} - {{tv.vote_average}} / 10</p>
+        }
         <div class="flex gap-5 mx-7">
             <img class="w-[236px] h-[300px] rounded-[5px]" [src]="'https://image.tmdb.org/t/p/original/' +  tv.poster_path" [alt]="tv.name">
             <div class="flex flex-col gap-2 self-center">
@@ -19,58 +22,61 @@
                 <div class="flex gap-3">
                     <strong class="capitalize text-[#FFD700] text-lg whitespace-nowrap">seasons:</strong>
                     <div class="flex flex-wrap gap-3">
-                    <div *ngFor="let season of tv.seasons">
+                        @for (season of tv.seasons; track season.name) {
                         <span class="text-[#FFD700] text-lg"> {{
                             season.name
                           }}</span>
-                        </div>
+                    }
                         </div>
                     </div>
                 <div class="flex gap-3">
                 <strong class="capitalize text-[#FFD700] text-lg whitespace-nowrap">Air Date:</strong>
                 <div class="flex flex-wrap gap-3">
-                <div *ngFor="let season of tv.seasons">
+                    @for (season of tv.seasons; track season.air_date) {
                     <span class="text-[#FFD700] text-lg"> {{
                         season.air_date | date: "MM.yyyy"
                       }}</span>
-                    </div>
+                }
                     </div>
                 </div>
                 <div class="flex gap-3">
                     <strong class="capitalize text-[#FFD700] text-lg">Created By:</strong>
                     <div class="flex gap-3">
-                    <div *ngFor="let cast of tv.created_by">
+                        @for (cast of tv.created_by; track cast.name) {
                         <span class="text-[#FFD700] text-lg"> {{
                             cast.name
                           }}</span>
-                    </div>
+                }
                     </div>
                    </div>
                    <div class="flex gap-3">
                     <strong class="capitalize text-[#FFD700] text-lg whitespace-nowrap">Genres:</strong>
                     <div class="flex flex-wrap gap-3">
-                    <div *ngFor="let genre of tv.genres">
+                        @for (genre of tv.genres; track genre.name) {
                         <span class="text-[#FFD700] text-lg"> {{
                             tv.name
                           }}</span>
-                        </div>
+                    }
                         </div>
                     </div>
                </div>        
             </div>
         </div>
+    }
         <h1 class="text-yellow-300 text-4xl font-bold ml-7">Top Cast</h1>
-        <div *ngIf="tvCredits | async as credits" class="flex gap-5 overflow-x-scroll no-scrollbar mx-7">
-            <div *ngFor="let credit of credits.cast">
+        @if (tvCredits | async; as credits) {
+        <div class="flex gap-5 overflow-x-scroll no-scrollbar mx-7">
+            @for (credit of credits.cast; track credit.name) {
                 <div class="!w-[72px]">
                     <img class="" [src]="'https://image.tmdb.org/t/p/original/' + credit.profile_path">
                     <p class="text-yellow-300 text-lg">{{ credit.name }}</p>
                 </div>
-            </div>
+        }
           </div>
+        }
           <div class="grid grid-cols-2 mx-7 gap-3">
-            <div *ngFor="let video of tvVideos$ | async">
+            @for (video of tvVideos$ | async; track video.key) {
                 <app-video [key]="video.key" [site]="video.site"></app-video>
-              </div>
+            }
             </div>
     </section>

@@ -3,10 +3,10 @@
 <section class="flex flex-col gap-4">
     <h2 class="text-yellow-300 font-medium text-2xl">Movie Genres</h2>
     <div class="flex flex-wrap gap-4">
-        <div *ngFor="let genre of movieGenres$ | async">
-        <button class="w-[236px] text-black bg-yellow-300 py-3 px-5 rounded-md hover:bg-transparent hover:text-yellow-300 hover:border hover:border-yellow-300"  [routerLink]="['/movies']"
-        [queryParams]="{ genreId: genre.id }" queryParamsHandling="merge">{{ genre.name }}</button>
-    </div>
+            @for (genre of movieGenres$ |async; track $index) {
+                <button class="w-[236px] text-black bg-yellow-300 py-3 px-5 rounded-md hover:bg-transparent hover:text-yellow-300 hover:border hover:border-yellow-300"  [routerLink]="['/movies/']"
+                [queryParams]="{ genreId: genre.id, q:genre.name}" queryParamsHandling="merge">{{ genre.name }}</button>
+            }
     </div>
 </section>
 
@@ -14,13 +14,12 @@
 <section class="flex flex-col gap-4">
     <h2 class="text-yellow-300 font-medium text-2xl">Tv Genres</h2>
     <div class="flex flex-wrap gap-4">
-        <div *ngFor="let genre of TvGenres$ | async">
-        <button class="w-[236px] text-black bg-yellow-300 py-3 px-5 rounded-md hover:bg-transparent hover:text-yellow-300 hover:border hover:border-yellow-300">{{ genre.name }}</button>
-    </div>
+            @for (genre of TvGenres$ | async; track $index) {
+                <button class="w-[236px] text-black bg-yellow-300 py-3 px-5 rounded-md hover:bg-transparent hover:text-yellow-300 hover:border hover:border-yellow-300">{{ genre.name }}</button>
+            }
     </div>
 </section>
 </div>
 
 
-
-<!-- <iframe width="295" height="391" src="https://www.youtube.com/embed/Sv5yCzPCkv8?list=RDSv5yCzPCkv8" title="SZA - Snooze (Audio)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
+ 

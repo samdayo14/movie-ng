@@ -1,4 +1,4 @@
-import { AsyncPipe, NgIf,NgFor, CurrencyPipe, DatePipe, UpperCasePipe } from '@angular/common';
+import { AsyncPipe,CurrencyPipe, DatePipe, UpperCasePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
 import { Observable } from 'rxjs';
@@ -9,7 +9,7 @@ import { VideoComponent } from '../../component/video/video.component';
 @Component({
   selector: 'app-tv-id',
   standalone: true,
-  imports: [NgIf, NgFor, AsyncPipe,DatePipe,UpperCasePipe,CurrencyPipe,VideoComponent],
+  imports: [AsyncPipe,DatePipe,UpperCasePipe,CurrencyPipe,VideoComponent],
   templateUrl: './tv-id.component.html',
   styleUrl: './tv-id.component.scss'
 })

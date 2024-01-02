@@ -13,20 +13,18 @@
             </div>
           </form>
     </div> 
-      <div *ngIf="searchMovies$ | async as movies">
-        <div *ngIf="movies.length > 0; else noMoviesFound">
-          <div class="grid grid-cols-5 gap-3">
-          <div *ngFor="let movie of movies">
-              <app-movie-card [title]="movie.title" [image]="movie.backdrop_path" [rating]="movie.vote_average" [routerLink]="['/movie', +movie.id]"></app-movie-card>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <ng-template #noMoviesFound>
-        <div class="flex justify-center items-center self-center">
-          <p class="text-white text-3xl">No movies found</p>
-        </div>
-      </ng-template>
-
+        @if (searchMovies$ |async; as movies) {
+            @if (movies.length > 0) {
+              <div class="grid grid-cols-5 gap-3">
+                  @for (movie of movies; track movie.title) {
+                    <app-movie-card [title]="movie.title" [image]="movie.backdrop_path" [rating]="movie.vote_average" [routerLink]="['/movie', +movie.id]"></app-movie-card>
+                  }
+              </div>
+            }
+              @else {
+                <div class="flex justify-center items-center self-center">
+                  <p class="text-white text-3xl">No movie found</p>
+                </div>
+              }
+        }
 </section>

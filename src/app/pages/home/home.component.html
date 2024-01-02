@@ -1,14 +1,17 @@
 <div class="flex flex-col gap-5">
 <!-- slider -->
 <section class="flex overflow-x-scroll no-scrollbar">
-  <div *ngFor="let movie of item$ | async" class="relative overflow-hidden  min-w-full image-container">
-    <img [src]="'https://image.tmdb.org/t/p/original/' + movie.backdrop_path" alt="" class="w-full">
-    <p class="ml-7 text-6xl absolute top-[50%] text-[#FFD700] font-semibold z-50">{{ movie.title }} - {{movie.vote_average}} / 10</p>
-  </div>
+  @for (movie of item$ |async; track movie.title) {
+    <div class="relative overflow-hidden  min-w-full image-container">
+      <img [src]="'https://image.tmdb.org/t/p/original/' + movie.backdrop_path" alt="" class="w-full">
+      <p class="ml-7 text-6xl absolute top-[50%] text-[#FFD700] font-semibold z-50">{{ movie.title }} - {{movie.vote_average}} / 10</p>
+    </div>
+  }
 </section>
 <!-- movie list -->
 <div class="flex gap-3 bg-[#212121] py-1 px-7 rounded-[5px] self-center">
-  <button *ngFor="let item of routes" 
+  <button 
+  *ngFor="let item of routes" 
             class="text-white py-2 px-5 rounded-[5px]" 
             (click)="openTab(item.route)"
             [ngClass]="{ 'underline text-yellow-300': selectedTab === item.route }">
@@ -23,7 +26,7 @@
       <app-movie-card [title]="movie.title" [image]="movie.poster_path" [rating]="movie.vote_average" [routerLink]="['/movie', + movie.id]"></app-movie-card>
     </div>
   </div>
-  <button class="flex justify-start items-start self-end text-white hover:text-yellow-300 hover:underline hover:transition-all duration-600" (click)="handleLoadMore()">See more &rarr;</button>
+  <button class="flex justify-start items-start self-end text-white hover:text-yellow-300 hover:underline hover:transition-all duration-300" (click)="handleLoadMore()">See more &rarr;</button>
 </div>
 
 </div>

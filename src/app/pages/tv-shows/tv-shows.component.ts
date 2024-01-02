@@ -1,4 +1,4 @@
-import { AsyncPipe, NgFor, NgIf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -10,7 +10,7 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-tv-shows',
   standalone: true,
-  imports: [ReactiveFormsModule,NgFor,NgIf,AsyncPipe,MovieCardComponent,RouterLink],
+  imports: [ReactiveFormsModule,AsyncPipe,MovieCardComponent,RouterLink],
   templateUrl: './tv-shows.component.html',
   styleUrl: './tv-shows.component.scss'
 })
