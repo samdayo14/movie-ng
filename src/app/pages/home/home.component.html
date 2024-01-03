@@ -1,10 +1,10 @@
-<div class="flex flex-col gap-5">
+<div class="flex flex-col gap-5 pb-4">
 <!-- slider -->
 <section class="flex overflow-x-scroll no-scrollbar">
   @for (movie of item$ |async; track movie.title) {
     <div class="relative overflow-hidden  min-w-full image-container">
       <img [src]="'https://image.tmdb.org/t/p/original/' + movie.backdrop_path" alt="" class="w-full">
-      <p class="ml-7 text-6xl absolute top-[50%] text-[#FFD700] font-semibold z-50">{{ movie.title }} - {{movie.vote_average}} / 10</p>
+      <p class="ml-7  absolute top-[50%] text-[#FFD700] font-semibold z-50 md:text-3xl lg:text-6xl">{{ movie.title }} - {{movie.vote_average}} / 10</p>
       
     </div>
   }
@@ -21,8 +21,8 @@
 </div>
 <!-- Common Functionality for Each Section -->
 <div *ngIf="(top_rated || trending || upcoming) && (selectedTab === 'Top Rated' || selectedTab === 'Trending' || selectedTab === 'Upcoming')" class="mx-7 flex flex-col gap-3">
-  <h1 class="text-[#FFD700] text-4xl font-bold">{{selectedTab === 'Top Rated' ? 'Top Rated Movies' : selectedTab === 'Trending' ? 'Trending Movies' : 'Upcoming Movies'}}</h1>
-  <div class="grid grid-cols-5 gap-3">
+  <h1 class="text-[#FFD700] font-bold md:text-2xl lg:text-4xl">{{selectedTab === 'Top Rated' ? 'Top Rated Movies' : selectedTab === 'Trending' ? 'Trending Movies' : 'Upcoming Movies'}}</h1>
+  <div class="grid md:grid-cols-4 md:gap-2 lg:grid-cols-5 lg:gap-3">
     <div *ngFor="let movie of (selectedTab === 'Top Rated' ? movie$ : selectedTab === 'Trending' ? trendingMovies$ : upcomingMovies$) | async">
       <app-movie-card [title]="movie.title" [image]="movie.poster_path" [rating]="movie.vote_average" [routerLink]="['/movie', + movie.id]"></app-movie-card>
     </div>

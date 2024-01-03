@@ -1,7 +1,7 @@
 <div class="mx-7 flex flex-col gap-10">
     <!-- Movies Genres -->
 <section class="flex flex-col gap-4">
-    <h2 class="text-yellow-300 font-medium text-2xl">Movie Genres</h2>
+    <h2 class="text-yellow-300 font-medium md:text-lg lg:text-2xl">Movie Genres</h2>
     <div class="flex flex-wrap gap-4">
             @for (genre of movieGenres$ |async; track genre.name) {
                 <button class="w-[236px] text-black bg-yellow-300 py-3 px-5 rounded-md hover:bg-transparent hover:text-yellow-300 hover:border hover:border-yellow-300"  [routerLink]="['/movies']"
@@ -12,7 +12,7 @@
 
 <!-- Tv genres -->
 <section class="flex flex-col gap-4">
-    <h2 class="text-yellow-300 font-medium text-2xl">Tv Genres</h2>
+    <h2 class="text-yellow-300 font-medium md:text-lg lg:text-2xl">Tv Genres</h2>
     <div class="flex flex-wrap gap-4">
             @for (genre of TvGenres$ | async; track $index) {
                 <button class="w-[236px] text-black bg-yellow-300 py-3 px-5 rounded-md hover:bg-transparent hover:text-yellow-300 hover:border hover:border-yellow-300" [routerLink]="['/tv-shows']" [queryParams]="{genre:genre.name, q:genre.id}">{{ genre.name }}</button>

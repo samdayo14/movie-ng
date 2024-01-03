@@ -1,4 +1,4 @@
-<section class="flex flex-col gap-10">
+<section class="flex flex-col gap-10 pb-4">
 <div class="pt-6 flex justify-center">
     <form class="items-center w-[65%]" [formGroup]="form">
         <div class="relative">
@@ -15,7 +15,7 @@
 </div> 
 @if (Tv$ | async; as tv) {
   @if (tv.length > 0) {
-      <div class="grid grid-cols-5 gap-3">
+      <div class="grid md:grid-cols-4 md:gap-2 lg:grid-cols-5 lg:gap-3">
         @for (movie of tv; track $index) {
           <app-movie-card [title]="movie.name" [image]="movie.backdrop_path" [rating]="movie.vote_average" [routerLink]="['/tv', + movie.id]"></app-movie-card>     
       }

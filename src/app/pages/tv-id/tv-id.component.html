@@ -5,22 +5,22 @@
             <img [src]="'https://image.tmdb.org/t/p/original/' + tv.backdrop_path" class="w-ful">
         </div>
         @if (tv.backdrop_path) {
-            <p class="ml-7 text-6xl absolute top-[50%] text-[#FFD700] font-semibold z-50">{{ tv.name }} - {{tv.vote_average}} / 10</p>
+            <p class="ml-7 lg:text-6xl absolute md:text-3xl md:top-[25%] lg:top-[50%] text-[#FFD700] font-semibold z-50">{{ tv.name }} - {{tv.vote_average}} / 10</p>
         }
         <div class="flex gap-5 mx-7">
             <img class="w-[236px] h-[300px] rounded-[5px]" [src]="'https://image.tmdb.org/t/p/original/' +  tv.poster_path" [alt]="tv.name">
             <div class="flex flex-col gap-2 self-center">
-                <span class="text-[#FFD700] text-lg flex gap-3">
+                <span class="text-[#FFD700] md:text-base lg:text-lg flex gap-3">
                    <strong class="capitalize">popularity:</strong>{{tv.popularity}}</span>
-                <span class="text-[#FFD700] text-lg flex gap-3"><strong class="capitalize">Release Date: </strong> {{tv.release_date  | date: "dd.MM.yyyy" }}</span>
-                <span class="text-[#FFD700] text-lg flex gap-3"><strong class="capitalize">Overview:</strong> {{tv.overview}}</span>
-                <span class="text-[#FFD700] text-lg flex gap-3"><strong class="capitalize">Language:</strong> {{ tv.original_language | uppercase }}</span>
-                <span class="text-[#FFD700] text-lg flex gap-3"><strong class="capitalize">Revenue:</strong> {{ tv.revenue | currency }}</span>
-                <span class="text-[#FFD700] text-lg flex gap-3"><strong class="capitalize">Duration:</strong> {{ tv.runtime }} min</span>
-                <span class="text-[#FFD700] text-lg flex gap-3"><strong class="capitalize">Status:</strong> {{ tv.status }}</span>
-                <span class="text-[#FFD700] text-lg flex gap-3"><strong class="capitalize">Tagline:</strong> {{ tv.tagline }}</span>
+                <span class="text-[#FFD700] md:text-base lg:text-lg flex gap-3"><strong class="capitalize">Release Date: </strong> {{tv.release_date  | date: "dd.MM.yyyy" }}</span>
+                <span class="text-[#FFD700] md:text-base lg:text-lg flex gap-3"><strong class="capitalize">Overview:</strong> {{tv.overview}}</span>
+                <span class="text-[#FFD700] md:text-base lg:text-lg flex gap-3"><strong class="capitalize">Language:</strong> {{ tv.original_language | uppercase }}</span>
+                <span class="text-[#FFD700] md:text-base lg:text-lg flex gap-3"><strong class="capitalize">Revenue:</strong> {{ tv.revenue | currency }}</span>
+                <span class="text-[#FFD700] md:text-base lg:text-lg flex gap-3"><strong class="capitalize">Duration:</strong> {{ tv.runtime }} min</span>
+                <span class="text-[#FFD700] md:text-base lg:text-lg flex gap-3"><strong class="capitalize">Status:</strong> {{ tv.status }}</span>
+                <span class="text-[#FFD700] md:text-base lg:text-lg flex gap-3"><strong class="capitalize">Tagline:</strong> {{ tv.tagline }}</span>
                 <div class="flex gap-3">
-                    <strong class="capitalize text-[#FFD700] text-lg whitespace-nowrap">seasons:</strong>
+                    <strong class="capitalize text-[#FFD700] md:text-base lg:text-lg whitespace-nowrap">seasons:</strong>
                     <div class="flex flex-wrap gap-3">
                         @for (season of tv.seasons; track season.name) {
                         <span class="text-[#FFD700] text-lg"> {{
@@ -30,7 +30,7 @@
                         </div>
                     </div>
                 <div class="flex gap-3">
-                <strong class="capitalize text-[#FFD700] text-lg whitespace-nowrap">Air Date:</strong>
+                <strong class="capitalize text-[#FFD700] md:text-base lg:text-lg whitespace-nowrap">Air Date:</strong>
                 <div class="flex flex-wrap gap-3">
                     @for (season of tv.seasons; track season.air_date) {
                     <span class="text-[#FFD700] text-lg"> {{
@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <div class="flex gap-3">
-                    <strong class="capitalize text-[#FFD700] text-lg">Created By:</strong>
+                    <strong class="capitalize text-[#FFD700] md:text-base lg:text-lg">Created By:</strong>
                     <div class="flex gap-3">
                         @for (cast of tv.created_by; track cast.name) {
                         <span class="text-[#FFD700] text-lg"> {{
@@ -50,7 +50,7 @@
                     </div>
                    </div>
                    <div class="flex gap-3">
-                    <strong class="capitalize text-[#FFD700] text-lg whitespace-nowrap">Genres:</strong>
+                    <strong class="capitalize text-[#FFD700] md:text-base lg:text-lg whitespace-nowrap">Genres:</strong>
                     <div class="flex flex-wrap gap-3">
                         @for (genre of tv.genres; track genre.name) {
                         <span class="text-[#FFD700] text-lg"> {{
@@ -63,13 +63,13 @@
             </div>
         </div>
     }
-        <h1 class="text-yellow-300 text-4xl font-bold ml-7">Top Cast</h1>
+        <h1 class="text-yellow-300 md:text-2xl lg:text-4xl font-bold ml-7">Top Cast</h1>
         @if (tvCredits | async; as credits) {
         <div class="flex gap-5 overflow-x-scroll no-scrollbar mx-7">
             @for (credit of credits.cast; track credit.name) {
-                <div class="!w-[72px]">
+                <div class="md:w-[50px] lg:!w-[72px]">
                     <img class="" [src]="'https://image.tmdb.org/t/p/original/' + credit.profile_path">
-                    <p class="text-yellow-300 text-lg">{{ credit.name }}</p>
+                    <p class="text-yellow-300 md:text-sm lg:text-lg">{{ credit.name }}</p>
                 </div>
         }
           </div>
