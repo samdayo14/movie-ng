@@ -3,9 +3,9 @@
         <div class="flex justify-between mx-7">
             <h2 class="text-[#FFD700] text-4xl font-bold cursor-pointer" routerLink="/">Movie Ng</h2>
             <div  class="self-center flex gap-9">
-                <div *ngFor="let route of routes;trackBy:trackRoute">
-                    <span class="text-white text-lg cursor-pointer"  [routerLinkActiveOptions]="{ exact: true }" [routerLink]="route.routerLink" [routerLinkActive]="['bg-zinc-600', 'py-1.5', 'rounded-[5px]', 'px-4']">{{route.page}}</span>
-                    </div>
+                    @for (route of routes; track route.page) {
+                        <span class="text-white text-lg cursor-pointer"  [routerLinkActiveOptions]="{ exact: true }" [routerLink]="route.routerLink" [routerLinkActive]="['bg-zinc-600', 'py-1.5', 'rounded-[5px]', 'px-4']">{{route.page}}</span>
+                    }
             </div>
         </div>
     </nav>
