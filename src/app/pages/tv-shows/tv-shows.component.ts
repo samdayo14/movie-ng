@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { SearchTv } from '../../models/movie';
 import { MovieService } from '../../services/movie.service';
 import { MovieCardComponent } from '../../component/movie-card/movie-card.component';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-tv-shows',
@@ -15,13 +15,24 @@ import { RouterLink } from '@angular/router';
   styleUrl: './tv-shows.component.scss'
 })
 export class TvShowsComponent {
+  private genre:string = '';
   protected query:string = '';
   protected Tv$:Observable<SearchTv[]> = this.service.getSearchTv(this.query)
   protected form:FormGroup;
-  constructor(private fb:FormBuilder, private service:MovieService){
+  constructor(private fb:FormBuilder, private service:MovieService,private route: ActivatedRoute){
     this.form = this.fb.nonNullable.group({
       search:this.fb.nonNullable.control('')
     })
+    this.route.queryParams.subscribe(params => {
+      this.genre = params['genre'] || '';
+      this.filterTv();
+  });
+  
+  this.filterTv()
+  }
+
+  private filterTv(){
+    this.Tv$ = this.service.getSearchTv(this.genre)
   }
 
   protected searchTv(){
