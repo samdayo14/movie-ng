@@ -10,7 +10,7 @@ export const routes: Routes = [
     {path:'', component:HomeComponent},
     {path:'movies', component:MoviesComponent},
     {path:'tv-shows', component:TvShowsComponent},
-    {path:'genres/:id', component:GenresComponent},
+    {path:'genres', component:GenresComponent},
     {path:'movie/:id', component:MovieIdComponent},
     {path:'tv/:id', component:TvIdComponent},
     { path: '', redirectTo: '', pathMatch: 'full' },

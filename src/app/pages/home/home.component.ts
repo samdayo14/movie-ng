@@ -2,7 +2,7 @@ import {  Component, signal,} from '@angular/core';
 import { Movie, TopMovie, TrendingMovies, UpcomingMovies, } from '../../models/movie';
 import { AsyncPipe, NgClass, NgFor, NgIf } from '@angular/common';
 import { MovieService } from '../../services/movie.service';
-import { BehaviorSubject, Observable, of, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { MovieCardComponent } from '../../component/movie-card/movie-card.component';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 
@@ -29,6 +29,7 @@ export class HomeComponent{
     this.loadTrending();
     this.loadUpcoming()
   }
+
 
   protected handleLoadMore(): void {
     switch (this.selectedTab) {

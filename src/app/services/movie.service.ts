@@ -79,16 +79,6 @@ public getMovieGenres(): Observable<Genre[]> {
     );
 }
 
-getMoviesByGenre(genreId: string, page: number) {
-  return this.http
-    .get<{results:Movie[]}>(
-      `${this.baseUrl}/discover/movie?with_genres=${genreId}&page=${page}&api_key=${this.apiKey}`
-    )
-    .pipe(
-     map((res) => res.results)
-    );
-}
-
 
 public getTvGenres(): Observable<Genre[]> {
   return this.http.get<{ genres: Genre[] }>(`${this.baseUrl}/genre/tv/list?api_key=${this.apiKey}`)

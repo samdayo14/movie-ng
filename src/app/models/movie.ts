@@ -9,7 +9,9 @@
     backdrop_path: string; 
     vote_average: number;
     vote_count: number;
-    id:number
+    id:number;
+    genres: Genre[];
+    genre_ids: number[];
   }
   
 

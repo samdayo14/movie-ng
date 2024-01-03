@@ -38,7 +38,7 @@
     <div class="flex gap-5 overflow-x-scroll no-scrollbar mx-7">
         @for (credit of credits.cast; track credit.name) {
                 <div class="!w-[72px]">
-                    <img class="" [src]="'https://image.tmdb.org/t/p/original/' + credit.profile_path">
+                    <img class="!w-[72px]" [src]="'https://image.tmdb.org/t/p/original/' + credit.profile_path">
                     <p class="text-yellow-300 text-lg">{{ credit.name }}</p>
                 </div>
         }
