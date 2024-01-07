@@ -22,7 +22,7 @@
                     <strong class="capitalize text-[#FFD700] text-sm md:text-base lg:text-lg whitespace-nowrap">Genres:</strong>
                     <div class="flex flex-wrap gap-3">
                         @for (genre of movie.genres; track $index) {
-                        <span class="text-[#FFD700] text-lg"> {{
+                        <span class="text-[#FFD700] text-sm lg:text-lg"> {{
                             genre.name
                           }}</span>      
                     }
@@ -32,13 +32,12 @@
     </div>
 </div>
 }
-<div class="flex flex-col gap-10">
 <h1 class="text-yellow-300 font-bold ml-7 text-sm md:text-2xl lg:text-4xl">Top Cast</h1>
 @if (movieCredits$ | async; as credits) {
     <div class="flex gap-10  overflow-x-scroll no-scrollbar mx-7">
         @for (credit of credits.cast; track credit.name) {
-                <div class="flex flex-col gap-2">
-                    <img class="w-72" style="width: 72px;" [src]="'https://image.tmdb.org/t/p/original/' + credit.profile_path">
+                <div class="w-[40px] md:w-[50px] lg:!w-[72px]">
+                    <img [src]="'https://image.tmdb.org/t/p/original/' + credit.profile_path">
                     <p class="text-yellow-300 md:text-sm lg:text-lg">{{ credit.name }}</p>
                 </div>
         }
@@ -49,6 +48,5 @@
     @for (video of movieVideo$ | async; track video.key) {
         <app-video [key]="video.key" [site]="video.site"></app-video>
     }
-  </div>
   </div>
 </section>
