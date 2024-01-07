@@ -1,16 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
-import { NgFor } from '@angular/common';
+import { NgFor, NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HomeComponent, RouterOutlet, NgFor, RouterLink, RouterOutlet,RouterLinkActive],
+  imports: [HomeComponent, RouterOutlet, NgFor, RouterLink, RouterOutlet,RouterLinkActive,NgTemplateOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
+
+  protected displayNav = signal(false)
+
+protected openNav(){
+  this.displayNav.set(true)
+}
+
+protected closeNav(){
+  this.displayNav.set(false)
+}
 
   protected routes = [
     {

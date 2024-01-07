@@ -1,11 +1,11 @@
-import {  Component, signal,} from '@angular/core';
+import {  Component, computed, signal} from '@angular/core';
 import { Movie, TopMovie, TrendingMovies, UpcomingMovies, } from '../../models/movie';
 import { AsyncPipe, NgClass, NgFor, NgIf } from '@angular/common';
 import { MovieService } from '../../services/movie.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { MovieCardComponent } from '../../component/movie-card/movie-card.component';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-
+import { toSignal } from '@angular/core/rxjs-interop';
 
 
 @Component({
@@ -21,8 +21,8 @@ export class HomeComponent{
   protected movie$: BehaviorSubject<TopMovie[]> = new BehaviorSubject<TopMovie[]>([]);
   protected trendingMovies$:BehaviorSubject<TrendingMovies[]> = new BehaviorSubject<TrendingMovies[]>([]);
   protected upcomingMovies$:BehaviorSubject<UpcomingMovies[]> = new BehaviorSubject<UpcomingMovies[]>([])
-  private currentPage = signal(1)
-
+  private currentPage = signal(1);
+  
 
   constructor(private readonly service:MovieService,private route:ActivatedRoute){
     this.loadMore();

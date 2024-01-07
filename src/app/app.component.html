@@ -1,5 +1,8 @@
 <div class="">
-    <nav class="bg-[#141414] w-full py-5">
+    <div class="block lg:hidden">
+        <ng-container *ngTemplateOutlet="mobileNav"></ng-container>
+    </div>
+    <nav class="bg-[#141414] w-full py-5 hidden lg:block">
         <div class="flex justify-between mx-7">
             <h2 class="text-[#FFD700] md:text-2xl font-bold cursor-pointer lg:text-4xl" routerLink="/">Movie Ng</h2>
             <div  class="self-center items-center justify-center flex gap-9">
@@ -11,3 +14,13 @@
     </nav>
         <router-outlet></router-outlet>
 </div>
+
+  <ng-template #mobileNav>
+    <div class="fixed flex flex-col w-screen h-screen z-50 backdrop-blur-[2px] left-0 top-0 overflow-hidden bg-[#00000040] items-center justify-center">
+        <div class="flex flex-col gap-[50px] bg-[#282D42] rounded-[20px] pt-[34px] min-h-full w-[251px] ml-auto">
+            @for (route of routes; track route.page) {
+                <span class="text-white cursor-pointer text-lg mx-auto"  [routerLinkActiveOptions]="{ exact: true }" [routerLink]="route.routerLink" [routerLinkActive]="['bg-zinc-600', 'py-1.5', 'rounded-[5px]', 'px-4', 'w-full']">{{route.page}}</span>
+            }
+        </div>
+    </div>
+  </ng-template>
