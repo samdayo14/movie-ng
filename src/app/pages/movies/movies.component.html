@@ -1,6 +1,6 @@
 <section class="flex flex-col gap-10 pb-4">
-    <div class="pt-6 flex justify-center">
-        <form class="items-center w-[65%]" [formGroup]="form">
+    <div class="pt-6 flex lg:justify-center">
+        <form class="lg:items-center mx-3 w-full lg:w-[65%]" [formGroup]="form">
             <div class="relative">
               <input
                 placeholder="Search Movies..."
@@ -13,18 +13,21 @@
             </div>
           </form>
     </div> 
-        @if (searchMovies$ |async; as movies) {
-            @if (movies.length > 0) {
-              <div class="grid md:grid-cols-4 md:gap-2 lg:grid-cols-5 lg:gap-3">
-                  @for (movie of movies; track movie.title) {
+    <div class="mx-3 md:mx-5 lg:mx-7">
+      @if (searchMovies$ |async; as movies) {
+        @if (movies.length > 0) {
+          <div class="grid grid-cols-1 gap-3 md:grid-cols-4 md:gap-2 lg:grid-cols-5 lg:gap-3">
+            @for (movie of movies; track movie.title) {
                     <app-movie-card [title]="movie.title" [image]="movie.backdrop_path" [rating]="movie.vote_average" [routerLink]="['/movie', +movie.id]"></app-movie-card>
                   }
-              </div>
-            }
+                </div>
+              }
               @else {
                 <div class="flex justify-center items-center self-center">
                   <p class="text-white text-3xl">No movie found</p>
                 </div>
               }
-        }
-</section>
+            }
+          </div>
+            
+          </section>

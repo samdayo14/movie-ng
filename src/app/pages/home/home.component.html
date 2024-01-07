@@ -21,7 +21,7 @@
 </div>
 <!-- Common Functionality for Each Section -->
 @if (top_rated || trending || upcoming && selectedTab ==='Top Rated' || selectedTab === 'Trending' || selectedTab==='Upcoming') {
-<div  class="mx-7 flex flex-col gap-3">
+<div  class="lg:mx-7 md:mx-5 mx-3 flex flex-col gap-3">
   <h1 class="text-[#FFD700] font-bold md:text-2xl lg:text-4xl">{{selectedTab === 'Top Rated' ? 'Top Rated Movies' : selectedTab === 'Trending' ? 'Trending Movies' : 'Upcoming Movies'}}</h1>
   <div class="grid grid-cols-1 gap-3 md:grid-cols-3 md:gap-2 lg:grid-cols-5 lg:gap-3">
     @for (movie of (selectedTab === 'Top Rated' ? movie$ : selectedTab === 'Trending' ? trendingMovies$ : upcomingMovies$) | async; track $index) {

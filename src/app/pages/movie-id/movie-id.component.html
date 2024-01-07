@@ -5,7 +5,7 @@
         <img [src]="'https://image.tmdb.org/t/p/original/' + movie.backdrop_path" class="w-full">
     </div>
     @if (movie.backdrop_path) {
-        <p  class="ml-7 absolute text-[#FFD700] top-[20%] font-semibold z-50 md:text-3xl md:top-[25%] lg:text-6xl lg:top-[50%]">{{ movie.title }} - {{movie.vote_average}} / 10</p>
+        <p  class="ml-7 absolute text-[#FFD700] text-xl top-[20%] font-semibold z-50 md:text-3xl md:top-[25%] lg:text-6xl lg:top-[50%]">{{ movie.title }} - {{movie.vote_average}} / 10</p>
     }
     <div class="flex flex-col gap-5 mx-7 lg:flex-row">
         <img class="w-[236px] self-center h-[300px] rounded-[5px]" [src]="'https://image.tmdb.org/t/p/original/' +  movie.poster_path" [alt]="movie.title">
@@ -37,12 +37,11 @@
 @if (movieCredits$ | async; as credits) {
     <div class="flex gap-10  overflow-x-scroll no-scrollbar mx-7">
         @for (credit of credits.cast; track credit.name) {
-                <div class="md:w-[48px] lg:w-[72px]">
-                    <img class="!w-[72px]" [src]="'https://image.tmdb.org/t/p/original/' + credit.profile_path">
+                <div class="flex flex-col gap-2">
+                    <img class="w-72" style="width: 72px;" [src]="'https://image.tmdb.org/t/p/original/' + credit.profile_path">
                     <p class="text-yellow-300 md:text-sm lg:text-lg">{{ credit.name }}</p>
                 </div>
         }
-
     </div>
 }
 
