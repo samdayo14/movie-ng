@@ -2,11 +2,12 @@ import { Component, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { NgFor, NgTemplateOutlet } from '@angular/common';
+import {MatIconModule} from '@angular/material/icon';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HomeComponent, RouterOutlet, NgFor, RouterLink, RouterOutlet,RouterLinkActive,NgTemplateOutlet],
+  imports: [HomeComponent, RouterOutlet, NgFor, RouterLink, RouterOutlet,RouterLinkActive,NgTemplateOutlet,MatIconModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

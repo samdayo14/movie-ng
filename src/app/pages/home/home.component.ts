@@ -1,17 +1,16 @@
-import {  Component, computed, signal} from '@angular/core';
+import {  Component, signal} from '@angular/core';
 import { Movie, TopMovie, TrendingMovies, UpcomingMovies, } from '../../models/movie';
-import { AsyncPipe, NgClass, NgFor, NgIf } from '@angular/common';
+import { AsyncPipe, NgClass, NgFor} from '@angular/common';
 import { MovieService } from '../../services/movie.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { MovieCardComponent } from '../../component/movie-card/movie-card.component';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { toSignal } from '@angular/core/rxjs-interop';
 
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [NgIf,NgFor,AsyncPipe,MovieCardComponent, RouterLink,NgClass],
+  imports: [NgFor,AsyncPipe,MovieCardComponent, RouterLink,NgClass],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })

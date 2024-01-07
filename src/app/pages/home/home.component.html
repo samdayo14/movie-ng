@@ -1,4 +1,4 @@
-<div class="flex flex-col gap-5 pb-4">
+<div class="flex flex-col gap-7 md:gap-6 lg:gap-5 pb-4">
 <!-- slider -->
 <section class="flex overflow-x-scroll no-scrollbar">
   @for (movie of item$ |async; track movie.title) {
@@ -10,24 +10,25 @@
   }
 </section>
 <!-- movie list -->
-<div class="flex gap-3 bg-[#212121] py-1 px-7 rounded-[5px] self-center">
+<div class="flex gap-2 md:gap-[10px] lg:gap-3 bg-[#212121] py-1 px-7 rounded-[5px] self-center">
   <button 
   *ngFor="let item of routes" 
-            class="text-white py-2 px-5 rounded-[5px]" 
+            class="text-white whitespace-nowrap py-2 px-5 rounded-[5px] text-xs md:text-sm lg:text-base" 
             (click)="openTab(item.route)"
             [ngClass]="{ 'underline text-yellow-300': selectedTab === item.route }">
             {{ item.route }}
           </button>
 </div>
 <!-- Common Functionality for Each Section -->
-<div *ngIf="(top_rated || trending || upcoming) && (selectedTab === 'Top Rated' || selectedTab === 'Trending' || selectedTab === 'Upcoming')" class="mx-7 flex flex-col gap-3">
+@if (top_rated || trending || upcoming && selectedTab ==='Top Rated' || selectedTab === 'Trending' || selectedTab==='Upcoming') {
+<div  class="mx-7 flex flex-col gap-3">
   <h1 class="text-[#FFD700] font-bold md:text-2xl lg:text-4xl">{{selectedTab === 'Top Rated' ? 'Top Rated Movies' : selectedTab === 'Trending' ? 'Trending Movies' : 'Upcoming Movies'}}</h1>
-  <div class="grid md:grid-cols-4 md:gap-2 lg:grid-cols-5 lg:gap-3">
-    <div *ngFor="let movie of (selectedTab === 'Top Rated' ? movie$ : selectedTab === 'Trending' ? trendingMovies$ : upcomingMovies$) | async">
+  <div class="grid grid-cols-1 gap-3 md:grid-cols-3 md:gap-2 lg:grid-cols-5 lg:gap-3">
+    @for (movie of (selectedTab === 'Top Rated' ? movie$ : selectedTab === 'Trending' ? trendingMovies$ : upcomingMovies$) | async; track $index) {
       <app-movie-card [title]="movie.title" [image]="movie.poster_path" [rating]="movie.vote_average" [routerLink]="['/movie', + movie.id]"></app-movie-card>
-    </div>
+  }
   </div>
   <button class="flex justify-start items-start self-end text-white hover:text-yellow-300 hover:underline hover:transition-all duration-300" (click)="handleLoadMore()">See more &rarr;</button>
 </div>
-
+}
 </div>
