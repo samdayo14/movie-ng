@@ -4,7 +4,7 @@
     <h2 class="text-yellow-300 font-medium md:text-lg lg:text-2xl">Movie Genres</h2>
     <div class="flex flex-wrap gap-4">
             @for (genre of movieGenres$ |async; track genre.name) {
-                <button class="w-[236px] self-center text-black bg-yellow-300 py-3 px-5 rounded-md hover:bg-transparent hover:text-yellow-300 hover:border hover:border-yellow-300"  [routerLink]="['/movies']"
+                <button class="w-[236px] self-centeri text-black bg-yellow-300 py-3 px-5 rounded-md hover:bg-transparent hover:text-yellow-300 hover:border hover:border-yellow-300"  [routerLink]="['/movies']"
          [queryParams]="{genre:genre.name, q:genre.id}"  >{{ genre.name }}</button>
             }
     </div>
