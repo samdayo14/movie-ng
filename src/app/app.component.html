@@ -2,7 +2,7 @@
     <div class="block mx-3 py-3 lg:hidden">
     <div class="flex justify-between">
         <h2 class="text-[#FFD700] text-2xl font-bold cursor-pointer" routerLink="/">Movie Ng</h2>
-        <mat-icon class="text-white" (click)="openNav()">menu</mat-icon>
+        <mat-icon class="text-white cursor-pointer" (click)="openNav()">menu</mat-icon>
     </div>
     @if (displayNav()) {
             <ng-container *ngTemplateOutlet="mobileNav"></ng-container>
@@ -22,8 +22,8 @@
 </div>
 
   <ng-template #mobileNav>
-    <div class="fixed flex  w-screen h-screen z-50 backdrop-blur-[2px] left-0 top-0 overflow-hidden bg-[#00000040] items-center justify-center">
-        <mat-icon class="mt-[87px] ml-[30px] text-white self-start" (click)="closeNav()">cancel</mat-icon>
+    <div class="fixed flex  w-screen h-screen z-[9999] backdrop-blur-[2px] left-0 top-0 overflow-hidden bg-[#00000040] items-center justify-center">
+        <mat-icon class="mt-[87px] ml-[30px] text-white self-start cursor-pointer" (click)="closeNav()">cancel</mat-icon>
         <div class="flex flex-col gap-10 bg-[#282D42] rounded-[20px] pt-[34px] min-h-full w-[251px] ml-auto">
             @for (route of routes; track route.page) {
                 <span class="text-white cursor-pointer text-lg text-center" (click)="closeNav()"  [routerLinkActiveOptions]="{ exact: true }" [routerLink]="route.routerLink" [routerLinkActive]="['bg-zinc-600', 'py-1.5', 'rounded-[5px]', 'px-4', 'w-full','self-center']">{{route.page}}</span>
