@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { GenresDto, Genre, Movie, MovieCredit, MoviePage, SearchTv, TopMovie, TrendingMovies, UpcomingMovies, MovieVideo} from '../models/movie';
+import { Genre, Movie, MovieCredit, MoviePage, SearchTv, TopMovie, TrendingMovies, UpcomingMovies, MovieVideo} from '../models/movie';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map, of, switchMap} from 'rxjs';
+import { Observable, map} from 'rxjs';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class MovieService {
-  baseUrl: string = 'https://api.themoviedb.org/3';
-  apiKey: string = '27bac42752c910c91a7121f292212cc3';
+ private baseUrl: string = 'https://api.themoviedb.org/3';
+ private apiKey: string = '27bac42752c910c91a7121f292212cc3';
   constructor(private http: HttpClient) { 
   }
 
