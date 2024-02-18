@@ -20,7 +20,7 @@ export class MovieService {
       );
   }
 
- public getTopRatedMovies(page: number = 1): Observable<TopMovie[]> {
+ public getTopRatedMovies(page: number): Observable<TopMovie[]> {
 return this.http.get<{results:TopMovie[]}>(`${this.baseUrl}/movie/top_rated?api_key=${this.apiKey}&page=${page}`).pipe(map((res) => res.results.slice(0,10)))
   }
 

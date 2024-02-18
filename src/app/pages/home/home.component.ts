@@ -17,10 +17,10 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 export class HomeComponent{ 
   protected timeWindow:String= 'day';
   protected item$: Observable<Movie[]> = this.service.getMovies();
-  protected movie$: BehaviorSubject<TopMovie[]> = new BehaviorSubject<TopMovie[]>([]);
-  protected trendingMovies$:BehaviorSubject<TrendingMovies[]> = new BehaviorSubject<TrendingMovies[]>([]);
-  protected upcomingMovies$:BehaviorSubject<UpcomingMovies[]> = new BehaviorSubject<UpcomingMovies[]>([])
   private currentPage = signal(1);
+  protected movie$:Observable<TopMovie[]> | undefined;
+  protected trendingMovies$:Observable<TrendingMovies[]> | undefined;
+  protected upcomingMovies$:Observable<UpcomingMovies[]> | undefined
   
 
   constructor(private readonly service:MovieService,private route:ActivatedRoute){
@@ -45,33 +45,19 @@ export class HomeComponent{
   }
  
   protected loadMore() {
-    this.service.getTopRatedMovies(this.currentPage()).subscribe(
-      (res) => {
-        const currentMovies = this.movie$.value;
-        this.movie$.next([...currentMovies, ...res]);
-        this.currentPage.update((value) => value + 1);
-      },
-    );
+      this.currentPage.update((value) => value + 1);
+      this.movie$ = this.service.getTopRatedMovies(this.currentPage());
   }
+  
 
  protected loadTrending(){
-  this.service.getTrendingMovies(`${this.timeWindow}`,this.currentPage()).subscribe(
-    (res) => {
-      const currentMovies = this.trendingMovies$.value;
-      this.trendingMovies$.next([...currentMovies, ...res]);
-      this.currentPage.update((value) => value + 1);
-    },
-  );
+  this.currentPage.update((value) => value + 1);
+  this.trendingMovies$ = this.service.getTrendingMovies(`${this.timeWindow}`, this.currentPage())
   }
 
   protected loadUpcoming(){
-    this.service.getUpcomingMovies(this.currentPage()).subscribe(
-      (res) => {
-        const currentMovies = this.upcomingMovies$.value;
-        this.upcomingMovies$.next([...currentMovies, ...res]);
-        this.currentPage.update((value) => value + 1);
-      },
-    );
+    this.currentPage.update((value) => value + 1);
+    this.upcomingMovies$ = this.service.getUpcomingMovies(this.currentPage())
   }
 
   
